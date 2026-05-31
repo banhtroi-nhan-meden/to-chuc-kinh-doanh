@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Founder Organization Playbook Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+--blue:#2563EB;
+--blue2:#60A5FA;
+--dark:#0F172A;
+--gray:#475569;
+--light:#F8FBFF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#fff;overflow:hidden}
+.progress{position:fixed;top:0;left:0;width:100%;height:4px;background:#e5e7eb;z-index:9999}
+.bar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--blue2));transition:.4s}
+
+.slide{
+display:none;
+height:100vh;
+padding:50px 6vw 90px;
+position:relative;
+background:linear-gradient(135deg,#fff,#f5f9ff);
+}
+.slide.active{
+display:flex;
+animation:slideIn .55s ease;
+}
+@keyframes slideIn{
+from{opacity:0;transform:translateY(30px) scale(.98)}
+to{opacity:1;transform:none}
+}
+
+.wrap{
+width:100%;
+display:grid;
+grid-template-columns:1.1fr .9fr;
+gap:60px;
+align-items:center;
+}
+
+.tag{
+font-size:12px;
+letter-spacing:2px;
+font-weight:700;
+color:var(--blue);
+text-transform:uppercase;
+}
+
+h1{
+font-size:clamp(2rem,4vw,4rem);
+color:var(--dark);
+margin:12px 0;
+}
+
+h2{
+font-size:clamp(1rem,2vw,1.4rem);
+color:var(--gray);
+margin-bottom:24px;
+}
+
+ul{list-style:none}
+
+ul li{
+background:white;
+border:1px solid #E5E7EB;
+padding:14px 18px;
+margin-bottom:12px;
+border-radius:14px;
+transition:.35s;
+}
+
+@media (hover:hover){
+ul li:hover{
+transform:translateY(-3px);
+border-color:var(--blue);
+box-shadow:0 15px 40px rgba(37,99,235,.15);
+}
+}
+
+.quote{
+margin-top:20px;
+padding-left:16px;
+border-left:4px solid var(--blue);
+font-weight:700;
+}
+
+.visual{display:flex;justify-content:center;align-items:center}
+
+.circle{
+width:320px;height:320px;border-radius:50%;
+background:linear-gradient(135deg,var(--blue),var(--blue2));
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:2rem;
+font-weight:800;
+text-align:center;
+padding:30px;
+box-shadow:0 20px 60px rgba(37,99,235,.25);
+}
+
+.section-slide{
+display:none;
+height:100vh;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+background:linear-gradient(135deg,#0F172A,#2563EB);
+color:white;
+text-align:center;
+}
+.section-slide.active{display:flex;animation:slideIn .55s ease}
+.part{font-size:1rem;letter-spacing:4px;opacity:.8}
+.section-slide h1{color:white}
+.section-slide p{font-size:1.4rem}
+
+.comparison-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
+}
+
+.comp-card{
+background:white;
+border-radius:18px;
+padding:24px;
+border:1px solid #e5e7eb;
+transition:.35s;
+}
+
+.comp-card:hover{
+transform:translateY(-4px);
+box-shadow:0 15px 40px rgba(37,99,235,.15);
+}
+
+.framework{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:14px;
+flex-wrap:wrap;
+}
+
+.box{
+background:white;
+padding:18px 22px;
+border-radius:14px;
+border:1px solid #dbeafe;
+font-weight:700;
+}
+
+.raci{
+display:grid;
+gap:10px;
+width:100%;
+max-width:420px;
+}
+
+.raci div{
+background:white;
+padding:14px;
+border-radius:12px;
+border:1px solid #dbeafe;
+}
+
+.triangle{
+position:relative;
+width:350px;
+height:280px;
+}
+
+.triangle .top,
+.triangle .left,
+.triangle .right{
+position:absolute;
+background:white;
+padding:14px;
+border-radius:12px;
+border:1px solid #dbeafe;
+}
+
+.top{top:0;left:50%;transform:translateX(-50%)}
+.left{bottom:30px;left:0}
+.right{bottom:30px;right:0}
+
+.closing{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+width:100%;
+}
+
+.closing h1{font-size:5rem}
+.closing p{font-size:1.5rem;max-width:700px}
+
+.num{
+position:absolute;
+left:30px;
+bottom:30px;
+color:#64748B;
+}
+
+.nav{
+position:fixed;
+bottom:18px;
+right:18px;
+display:flex;
+gap:10px;
+z-index:999;
+}
+
+button{
+border:none;
+background:var(--blue);
+color:white;
+padding:12px 18px;
+border-radius:10px;
+cursor:pointer;
+}
+
+@media(max-width:768px){
+body{overflow:auto}
+.slide,.section-slide{height:auto;min-height:100vh}
+.wrap{grid-template-columns:1fr}
+.circle{width:220px;height:220px;font-size:1.4rem}
+.comparison-grid{grid-template-columns:1fr}
+.closing h1{font-size:2.6rem}
+}
+</style>
+</head>
+<body>
+
+<div class="progress"><div class="bar" id="bar"></div></div>
+<div id="slides"></div>
+
+<div class="nav">
+<button onclick="prevSlide()">← Prev</button>
+<button onclick="nextSlide()">Next →</button>
+</div>
+
+<script>
+const deck = [
+{type:"cover",title:"FOUNDER ORGANIZATION PLAYBOOK",sub:"Building Systems That Scale"},
+{type:"section",part:"PART 01",title:"FOUNDER MINDSET",sub:"Tư duy tổ chức cho nhà sáng lập"},
+{type:"insight",title:"ORGANIZATION FIRST",sub:"Tổ chức là nền móng của tăng trưởng",items:["Startup không chỉ là sản phẩm","Thiết kế cấu trúc từ sớm","Tạo nền tảng tăng trưởng"],quote:"Growth starts with structure.",visual:"GROWTH"},
+{type:"insight",title:"THE COST OF CHAOS",sub:"Tăng trưởng nhanh không thay thế quản trị",items:["Vai trò mập mờ","Quyết định chậm","Khủng hoảng tổ chức"],quote:"Scale without governance creates risk.",visual:"CHAOS"},
+{type:"framework",title:"STRATEGY NEEDS STRUCTURE",sub:"Strategy → Structure → Execution"},
+{type:"insight",title:"FROM DOER TO LEADER",sub:"Founder Evolution",items:["Doer","Manager","Leader"],quote:"Leadership scales organizations.",visual:"LEADER"},
+{type:"framework",title:"GROWTH LOOP",sub:"Culture → Performance → Growth"},
+{type:"insight",title:"SYSTEMS SCALE",sub:"Hệ thống làm việc thay nhà sáng lập",items:["Process","Automation","Culture"],quote:"Systems create scale.",visual:"SYSTEM"},
+
+{type:"section",part:"PART 02",title:"ORGANIZATIONAL MODELS",sub:"Các mô hình cấu trúc hiện đại"},
+
+{type:"comparison",title:"FUNCTIONAL STRUCTURE"},
+{type:"comparison",title:"FLAT ORGANIZATION"},
+{type:"comparison",title:"MATRIX MODEL"},
+{type:"comparison",title:"AGILE ORGANIZATION"},
+{type:"comparison",title:"NETWORK ORGANIZATION"},
+{type:"comparison",title:"FIT THE STRATEGY"},
+
+{type:"section",part:"PART 03",title:"OPERATING SYSTEM",sub:"Kiến tạo bộ máy vận hành"},
+
+{type:"insight",title:"CHIEF ARCHITECT",sub:"Work on the business",items:["System","Process","Scale"],quote:"Design before delegation.",visual:"ARCHITECT"},
+{type:"insight",title:"BUILD THE CORE TEAM",sub:"CEO • COO • Product • Marketing • CFO",items:["Role First","Clarity","Ownership"],quote:"Hire for the role.",visual:"TEAM"},
+{type:"insight",title:"ORGANIZATION ROADMAP",sub:"Clarity drives execution",items:["Structure","Responsibility","Growth"],quote:"Design for the future.",visual:"ROADMAP"},
+{type:"insight",title:"VALUE CHAIN THINKING",sub:"Customer value first",items:["Connect","Optimize","Improve"],quote:"Kaizen mindset.",visual:"VALUE"},
+{type:"framework-raci"},
+{type:"framework-data",title:"DATA DRIVEN MANAGEMENT",sub:"KPI • OKR • CRM • ERP • BI"},
+
+{type:"section",part:"PART 04",title:"PEOPLE & GOVERNANCE",sub:"Quản trị nội bộ và con người"},
+
+{type:"insight",title:"TRANSPARENT COMMUNICATION",sub:"Transparency creates alignment",items:["Trust","Clarity","Delegation"],quote:"Communication is the bloodstream.",visual:"TRUST"},
+{type:"insight",title:"KNOWLEDGE ASSET",sub:"Wiki • Drive • Knowledge Base",items:["Capture","Share","Scale"],quote:"Knowledge compounds.",visual:"KNOWLEDGE"},
+{type:"insight",title:"CULTURE IN ACTION",sub:"Culture is behavior",items:["Habits","Process","Consistency"],quote:"Culture scales decisions.",visual:"CULTURE"},
+{type:"framework-triangle"},
+{type:"closing"}
+];
+
+const holder=document.getElementById('slides');
+
+deck.forEach((s,i)=>{
+let html='';
+
+if(s.type==='section'){
+html=`<section class="section-slide ${i===0?'active':''}"><div class="part">${s.part}</div><h1>${s.title}</h1><p>${s.sub}</p></section>`;
+}
+else if(s.type==='comparison'){
+html=`<section class="slide ${i===0?'active':''}"><div style="width:100%"><div class="tag">Comparison Model</div><h1>${s.title}</h1><div class="comparison-grid"><div class="comp-card"><h3>Strength</h3><p>Core Advantage</p></div><div class="comp-card"><h3>Weakness</h3><p>Main Limitation</p></div><div class="comp-card"><h3>Best Use</h3><p>Ideal Context</p></div><div class="comp-card"><h3>Risk</h3><p>Execution Risk</p></div></div></div></section>`;
+}
+else if(s.type==='framework'){
+html=`<section class="slide"><div class="wrap"><div><h1>${s.title}</h1><h2>${s.sub}</h2></div><div class="framework"><div class="box">Strategy</div><div>→</div><div class="box">Structure</div><div>→</div><div class="box">Execution</div></div></div></section>`;
+}
+else if(s.type==='framework-raci'){
+html=`<section class="slide"><div class="wrap"><div><h1>RACI FRAMEWORK</h1><h2>One owner for every decision</h2></div><div class="raci"><div><b>R</b> Responsible</div><div><b>A</b> Accountable</div><div><b>C</b> Consulted</div><div><b>I</b> Informed</div></div></div></section>`;
+}
+else if(s.type==='framework-triangle'){
+html=`<section class="slide"><div class="wrap"><div><h1>THE GOLDEN TRIANGLE</h1><h2>Empowerment × Control × Transparency</h2></div><div class="triangle"><div class="top">Transparency</div><div class="left">Control</div><div class="right">Empowerment</div></div></div></section>`;
+}
+else if(s.type==='closing'){
+html=`<section class="slide"><div class="closing"><h1>SCALE WITHOUT CHAOS</h1><p>Great companies scale through Systems, Culture and People.</p></div></section>`;
+}
+else{
+html=`<section class="slide ${i===0?'active':''}"><div class="wrap"><div><div class="tag">Founder Organization Playbook</div><h1>${s.title}</h1><h2>${s.sub}</h2><ul>${(s.items||[]).map(x=>`<li>${x}</li>`).join('')}</ul><div class="quote">${s.quote||''}</div></div><div class="visual"><div class="circle">${s.visual||''}</div></div></div></section>`;
+}
+
+holder.innerHTML+=html;
+});
+
+let current=0;
+const slides=document.querySelectorAll('.slide,.section-slide');
+
+function update(){
+slides.forEach(x=>x.classList.remove('active'));
+slides[current].classList.add('active');
+document.getElementById('bar').style.width=((current+1)/slides.length*100)+'%';
+}
+
+function nextSlide(){if(current<slides.length-1){current++;update();}}
+function prevSlide(){if(current>0){current--;update();}}
+
+document.addEventListener('keydown',e=>{
+if(e.key==="ArrowRight")nextSlide();
+if(e.key==="ArrowLeft")prevSlide();
+});
+
+let sx=0;
+document.addEventListener('touchstart',e=>sx=e.changedTouches[0].screenX);
+document.addEventListener('touchend',e=>{
+let ex=e.changedTouches[0].screenX;
+if(sx-ex>50)nextSlide();
+if(ex-sx>50)prevSlide();
+});
+
+update();
+</script>
+</body>
+</html>
