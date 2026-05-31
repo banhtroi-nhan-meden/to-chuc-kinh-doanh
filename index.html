@@ -4,340 +4,168 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Founder Organization Playbook Pro</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
 --blue:#2563EB;
 --blue2:#60A5FA;
+--cyan:#38BDF8;
 --dark:#0F172A;
 --gray:#475569;
+--muted:#64748B;
+--line:#E2E8F0;
 --light:#F8FBFF;
+--white:rgba(255,255,255,.88);
+--shadow:0 24px 70px rgba(15,23,42,.10);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:#fff;overflow:hidden}
+html,body{width:100%;min-height:100%;}
+body{font-family:'Inter',sans-serif;background:#fff;overflow:hidden;color:var(--dark)}
 .progress{position:fixed;top:0;left:0;width:100%;height:4px;background:#e5e7eb;z-index:9999}
-.bar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--blue2));transition:.4s}
-
+.bar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--blue2),var(--cyan));transition:.4s}
 .slide{
 display:none;
 height:100vh;
-padding:50px 6vw 90px;
+padding:48px 6vw 88px;
 position:relative;
-background:linear-gradient(135deg,#fff,#f5f9ff);
+background:linear-gradient(135deg,#ffffff 0%,#f6f9ff 52%,#eef6ff 100%);
+overflow:hidden;
 }
-.slide.active{
-display:flex;
-animation:slideIn .55s ease;
-}
-@keyframes slideIn{
-from{opacity:0;transform:translateY(30px) scale(.98)}
-to{opacity:1;transform:none}
-}
-
-.wrap{
-width:100%;
-display:grid;
-grid-template-columns:1.1fr .9fr;
-gap:60px;
-align-items:center;
-}
-
-.tag{
-font-size:12px;
-letter-spacing:2px;
-font-weight:700;
-color:var(--blue);
-text-transform:uppercase;
-}
-
-h1{
-font-size:clamp(2rem,4vw,4rem);
-color:var(--dark);
-margin:12px 0;
-}
-
-h2{
-font-size:clamp(1rem,2vw,1.4rem);
-color:var(--gray);
-margin-bottom:24px;
-}
-
+.slide.active{display:flex;animation:slideIn .55s ease}
+@keyframes slideIn{from{opacity:0;transform:translateY(30px) scale(.985)}to{opacity:1;transform:none}}
+.slide::before,.slide::after{content:"";position:absolute;border-radius:999px;filter:blur(28px);opacity:.72;z-index:0;pointer-events:none}
+.slide::before{width:310px;height:310px;background:radial-gradient(circle,rgba(96,165,250,.50),rgba(37,99,235,.08) 65%,transparent 70%);right:-80px;top:60px}
+.slide::after{width:260px;height:260px;background:radial-gradient(circle,rgba(56,189,248,.34),rgba(14,165,233,.08) 62%,transparent 72%);left:-100px;bottom:30px}
+.bg-shape{position:absolute;border-radius:999px;filter:blur(20px);opacity:.46;pointer-events:none;z-index:0}
+.bg-shape.one{width:160px;height:160px;background:rgba(37,99,235,.18);left:58%;top:12%}
+.bg-shape.two{width:120px;height:120px;background:rgba(96,165,250,.24);right:18%;bottom:14%}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(37,99,235,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.055) 1px,transparent 1px);background-size:38px 38px;mask-image:linear-gradient(90deg,transparent,black 18%,black 82%,transparent);z-index:0}
+.wrap{width:100%;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);gap:clamp(28px,4vw,60px);align-items:center;position:relative;z-index:1}
+.content{max-width:820px}
+.tag{font-size:12px;letter-spacing:2.2px;font-weight:800;color:var(--blue);text-transform:uppercase;margin-bottom:12px}
+.part-tag{display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#2563EB;font-weight:800;background:rgba(239,246,255,.82);border:1px solid #DBEAFE;border-radius:999px;padding:8px 12px;margin-bottom:14px;backdrop-filter:blur(10px)}
+h1{font-size:clamp(2.2rem,4.6vw,4.85rem);line-height:.96;letter-spacing:-.055em;color:var(--dark);margin:10px 0 16px;font-weight:900}
+h2{font-size:clamp(1.02rem,1.8vw,1.45rem);line-height:1.42;color:var(--gray);font-weight:650;margin-bottom:22px;max-width:760px}
 ul{list-style:none}
-
-ul li{
-background:white;
-border:1px solid #E5E7EB;
-padding:14px 18px;
-margin-bottom:12px;
-border-radius:14px;
-transition:.35s;
-}
-
-@media (hover:hover){
-ul li:hover{
-transform:translateY(-3px);
-border-color:var(--blue);
-box-shadow:0 15px 40px rgba(37,99,235,.15);
-}
-}
-
-.quote{
-margin-top:20px;
-padding-left:16px;
-border-left:4px solid var(--blue);
-font-weight:700;
-}
-
-.visual{display:flex;justify-content:center;align-items:center}
-
-.circle{
-width:320px;height:320px;border-radius:50%;
-background:linear-gradient(135deg,var(--blue),var(--blue2));
-color:white;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:2rem;
-font-weight:800;
-text-align:center;
-padding:30px;
-box-shadow:0 20px 60px rgba(37,99,235,.25);
-}
-
-.section-slide{
-display:none;
-height:100vh;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-background:linear-gradient(135deg,#0F172A,#2563EB);
-color:white;
-text-align:center;
-}
-.section-slide.active{display:flex;animation:slideIn .55s ease}
-.part{font-size:1rem;letter-spacing:4px;opacity:.8}
-.section-slide h1{color:white}
-.section-slide p{font-size:1.4rem}
-
-.comparison-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:18px;
-}
-
-.comp-card{
-background:white;
-border-radius:18px;
-padding:24px;
-border:1px solid #e5e7eb;
-transition:.35s;
-}
-
-.comp-card:hover{
-transform:translateY(-4px);
-box-shadow:0 15px 40px rgba(37,99,235,.15);
-}
-
-.framework{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:14px;
-flex-wrap:wrap;
-}
-
-.box{
-background:white;
-padding:18px 22px;
-border-radius:14px;
-border:1px solid #dbeafe;
-font-weight:700;
-}
-
-.raci{
-display:grid;
-gap:10px;
-width:100%;
-max-width:420px;
-}
-
-.raci div{
-background:white;
-padding:14px;
-border-radius:12px;
-border:1px solid #dbeafe;
-}
-
-.triangle{
-position:relative;
-width:350px;
-height:280px;
-}
-
-.triangle .top,
-.triangle .left,
-.triangle .right{
-position:absolute;
-background:white;
-padding:14px;
-border-radius:12px;
-border:1px solid #dbeafe;
-}
-
-.top{top:0;left:50%;transform:translateX(-50%)}
-.left{bottom:30px;left:0}
-.right{bottom:30px;right:0}
-
-.closing{
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-width:100%;
-}
-
-.closing h1{font-size:5rem}
-.closing p{font-size:1.5rem;max-width:700px}
-
-.num{
-position:absolute;
-left:30px;
-bottom:30px;
-color:#64748B;
-}
-
-.nav{
-position:fixed;
-bottom:18px;
-right:18px;
-display:flex;
-gap:10px;
-z-index:999;
-}
-
-button{
-border:none;
-background:var(--blue);
-color:white;
-padding:12px 18px;
-border-radius:10px;
-cursor:pointer;
-}
-
-@media(max-width:768px){
+.bullet-list{display:grid;gap:12px;max-width:760px}
+.bullet-list li{background:var(--white);border:1px solid var(--line);padding:14px 18px 14px 48px;border-radius:16px;position:relative;line-height:1.45;box-shadow:0 10px 32px rgba(15,23,42,.045);transition:.35s;backdrop-filter:blur(10px)}
+.bullet-list li::before{content:"";position:absolute;left:18px;top:19px;width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--blue2));box-shadow:0 0 0 5px rgba(96,165,250,.13)}
+@media (hover:hover){.bullet-list li:hover,.card:hover,.comp-card:hover,.role-card:hover{transform:translateY(-3px);border-color:#93C5FD;box-shadow:0 18px 44px rgba(37,99,235,.13)}}
+.quote{margin-top:22px;background:rgba(255,255,255,.74);border:1px solid #DBEAFE;border-left:5px solid var(--blue);border-radius:18px;padding:16px 18px;box-shadow:0 14px 42px rgba(37,99,235,.08);backdrop-filter:blur(12px)}
+.quote .label{font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--blue);font-weight:900;margin-bottom:5px}
+.quote .text{font-size:clamp(1rem,1.55vw,1.32rem);font-weight:850;color:#0F172A;line-height:1.35}
+.visual{display:flex;justify-content:center;align-items:center;min-height:390px;position:relative}
+.circle{width:min(34vw,330px);height:min(34vw,330px);min-width:230px;min-height:230px;border-radius:50%;background:linear-gradient(135deg,#1D4ED8,var(--blue2));color:white;display:flex;align-items:center;justify-content:center;font-size:clamp(1.45rem,2.3vw,2.25rem);font-weight:900;text-align:center;padding:30px;box-shadow:0 28px 78px rgba(37,99,235,.25);position:relative;overflow:hidden}
+.circle::after{content:"";position:absolute;inset:18px;border:1px solid rgba(255,255,255,.26);border-radius:inherit}
+.orbit{position:absolute;width:min(42vw,430px);height:min(42vw,430px);min-width:290px;min-height:290px;border:1px dashed rgba(37,99,235,.22);border-radius:50%;animation:spin 20s linear infinite}
+.orbit::before,.orbit::after{content:"";position:absolute;width:15px;height:15px;border-radius:50%;background:#60A5FA;box-shadow:0 0 0 9px rgba(96,165,250,.13)}
+.orbit::before{top:18%;left:4%}.orbit::after{right:8%;bottom:16%}
+@keyframes spin{to{transform:rotate(360deg)}}
+.card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;width:100%;max-width:560px}
+.card,.comp-card,.role-card{background:rgba(255,255,255,.84);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 14px 42px rgba(15,23,42,.06);backdrop-filter:blur(12px);transition:.35s}
+.card h3,.comp-card h3,.role-card h3{font-size:12px;text-transform:uppercase;letter-spacing:1.4px;color:var(--blue);margin-bottom:8px}
+.card p,.comp-card p,.role-card p{font-size:1rem;color:#334155;font-weight:650;line-height:1.38}
+.model-layout .wrap{grid-template-columns:minmax(0,.96fr) minmax(350px,1.04fr)}
+.comparison-grid{display:grid;grid-template-columns:1fr;gap:14px;width:100%;max-width:560px}
+.flow-row{display:flex;align-items:center;justify-content:center;gap:13px;flex-wrap:wrap;margin-top:8px}
+.flow-box{background:rgba(255,255,255,.88);border:1px solid #BFDBFE;border-radius:18px;padding:18px 22px;min-width:142px;text-align:center;font-weight:900;color:#1E3A8A;box-shadow:0 16px 44px rgba(37,99,235,.10);backdrop-filter:blur(10px)}
+.arrow{font-size:2rem;color:#60A5FA;font-weight:900}
+.spotify-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;width:100%;max-width:520px}
+.spotify-card{min-height:132px;display:flex;flex-direction:column;justify-content:space-between}
+.spotify-card strong{font-size:1.45rem;color:#0F172A}.spotify-card span{color:#64748B;line-height:1.4;margin-top:10px}
+.roles-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;width:100%;max-width:560px}
+.role-card:last-child{grid-column:1/-1}
+.raci-grid{display:grid;gap:12px;width:100%;max-width:520px}
+.raci-item{display:grid;grid-template-columns:74px 1fr;gap:14px;align-items:center;background:rgba(255,255,255,.86);border:1px solid #DBEAFE;border-radius:18px;padding:16px;box-shadow:0 16px 44px rgba(15,23,42,.06)}
+.raci-letter{width:54px;height:54px;border-radius:16px;background:linear-gradient(135deg,var(--blue),var(--blue2));display:flex;align-items:center;justify-content:center;color:white;font-size:1.65rem;font-weight:900}
+.raci-item b{font-size:1.08rem;color:#0F172A}.raci-item p{color:#64748B;margin-top:3px}
+.stack-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center}
+.stack-pill{background:linear-gradient(135deg,#1D4ED8,#60A5FA);color:white;border-radius:18px;padding:18px 24px;font-weight:900;box-shadow:0 18px 50px rgba(37,99,235,.22)}
+.triangle{position:relative;width:min(39vw,420px);height:330px;min-width:320px}
+.triangle-line{position:absolute;inset:26px;background:linear-gradient(135deg,rgba(37,99,235,.16),rgba(96,165,250,.05));clip-path:polygon(50% 0,100% 100%,0 100%);border-radius:20px;filter:drop-shadow(0 18px 36px rgba(37,99,235,.12))}
+.tri-node{position:absolute;background:rgba(255,255,255,.92);border:1px solid #BFDBFE;padding:16px 18px;border-radius:18px;font-weight:900;color:#1E3A8A;box-shadow:0 16px 42px rgba(15,23,42,.08);backdrop-filter:blur(10px)}
+.tri-node.top{top:0;left:50%;transform:translateX(-50%)}.tri-node.left{bottom:15px;left:0}.tri-node.right{bottom:15px;right:0}
+.closing{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;width:100%;position:relative;z-index:1}
+.closing .final{background:rgba(15,23,42,.94);color:white;border-radius:34px;padding:42px;box-shadow:0 30px 90px rgba(15,23,42,.24);position:relative;overflow:hidden}
+.final::before{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:rgba(96,165,250,.28);filter:blur(24px);right:-70px;top:-70px}
+.final h1{color:white;font-size:clamp(2.45rem,5vw,5.15rem)}.final p{font-size:clamp(1.05rem,1.7vw,1.55rem);line-height:1.45;color:#DBEAFE;font-weight:650;position:relative}
+.num{position:absolute;left:30px;bottom:28px;color:#64748B;font-weight:800;letter-spacing:1px;z-index:2}
+.nav{position:fixed;bottom:18px;right:18px;display:flex;gap:10px;z-index:999}
+button{border:none;background:linear-gradient(135deg,var(--blue),#1D4ED8);color:white;padding:12px 18px;border-radius:12px;cursor:pointer;font-weight:800;box-shadow:0 12px 30px rgba(37,99,235,.20)}
+button:active{transform:translateY(1px)}
+@media(max-width:980px){
 body{overflow:auto}
-.slide,.section-slide{height:auto;min-height:100vh}
-.wrap{grid-template-columns:1fr}
-.circle{width:220px;height:220px;font-size:1.4rem}
-.comparison-grid{grid-template-columns:1fr}
-.closing h1{font-size:2.6rem}
+.slide{height:auto;min-height:100vh;padding:38px 5vw 92px}
+.wrap,.model-layout .wrap,.closing{grid-template-columns:1fr;gap:26px}
+.visual{min-height:250px;order:2}
+.circle{width:240px;height:240px;min-width:210px;min-height:210px}
+.orbit{width:300px;height:300px;min-width:280px;min-height:280px}
+.card-grid,.roles-grid,.spotify-grid{grid-template-columns:1fr}
+.role-card:last-child{grid-column:auto}
+.triangle{width:340px;height:300px;margin:auto}
+}
+@media(max-width:560px){
+.slide{padding:30px 18px 86px}
+h1{font-size:clamp(2rem,14vw,3.2rem)}
+h2{font-size:1rem}
+.part-tag{font-size:10px;line-height:1.35;align-items:flex-start}
+.bullet-list li{padding:13px 14px 13px 42px;font-size:.96rem}
+.quote{padding:14px}
+.visual{min-height:210px}
+.circle{width:205px;height:205px;min-width:190px;min-height:190px;font-size:1.35rem}
+.orbit{display:none}
+.nav{left:18px;right:18px;justify-content:space-between}
+button{padding:11px 14px}
+.raci-item{grid-template-columns:58px 1fr;padding:13px}
+.raci-letter{width:46px;height:46px;font-size:1.35rem}
+.triangle{width:100%;min-width:0;height:280px}
+.tri-node{font-size:.9rem;padding:13px}
 }
 </style>
 </head>
 <body>
-
 <div class="progress"><div class="bar" id="bar"></div></div>
 <div id="slides"></div>
-
-<div class="nav">
-<button onclick="prevSlide()">← Prev</button>
-<button onclick="nextSlide()">Next →</button>
-</div>
-
+<div class="nav"><button onclick="prevSlide()">← Prev</button><button onclick="nextSlide()">Next →</button></div>
 <script>
-const deck = [
-{type:"cover",title:"FOUNDER ORGANIZATION PLAYBOOK",sub:"Building Systems That Scale"},
-{type:"section",part:"PART 01",title:"FOUNDER MINDSET",sub:"Tư duy tổ chức cho nhà sáng lập"},
-{type:"insight",title:"ORGANIZATION FIRST",sub:"Tổ chức là nền móng của tăng trưởng",items:["Startup không chỉ là sản phẩm","Thiết kế cấu trúc từ sớm","Tạo nền tảng tăng trưởng"],quote:"Growth starts with structure.",visual:"GROWTH"},
-{type:"insight",title:"THE COST OF CHAOS",sub:"Tăng trưởng nhanh không thay thế quản trị",items:["Vai trò mập mờ","Quyết định chậm","Khủng hoảng tổ chức"],quote:"Scale without governance creates risk.",visual:"CHAOS"},
-{type:"framework",title:"STRATEGY NEEDS STRUCTURE",sub:"Strategy → Structure → Execution"},
-{type:"insight",title:"FROM DOER TO LEADER",sub:"Founder Evolution",items:["Doer","Manager","Leader"],quote:"Leadership scales organizations.",visual:"LEADER"},
-{type:"framework",title:"GROWTH LOOP",sub:"Culture → Performance → Growth"},
-{type:"insight",title:"SYSTEMS SCALE",sub:"Hệ thống làm việc thay nhà sáng lập",items:["Process","Automation","Culture"],quote:"Systems create scale.",visual:"SYSTEM"},
-
-{type:"section",part:"PART 02",title:"ORGANIZATIONAL MODELS",sub:"Các mô hình cấu trúc hiện đại"},
-
-{type:"comparison",title:"FUNCTIONAL STRUCTURE"},
-{type:"comparison",title:"FLAT ORGANIZATION"},
-{type:"comparison",title:"MATRIX MODEL"},
-{type:"comparison",title:"AGILE ORGANIZATION"},
-{type:"comparison",title:"NETWORK ORGANIZATION"},
-{type:"comparison",title:"FIT THE STRATEGY"},
-
-{type:"section",part:"PART 03",title:"OPERATING SYSTEM",sub:"Kiến tạo bộ máy vận hành"},
-
-{type:"insight",title:"CHIEF ARCHITECT",sub:"Work on the business",items:["System","Process","Scale"],quote:"Design before delegation.",visual:"ARCHITECT"},
-{type:"insight",title:"BUILD THE CORE TEAM",sub:"CEO • COO • Product • Marketing • CFO",items:["Role First","Clarity","Ownership"],quote:"Hire for the role.",visual:"TEAM"},
-{type:"insight",title:"ORGANIZATION ROADMAP",sub:"Clarity drives execution",items:["Structure","Responsibility","Growth"],quote:"Design for the future.",visual:"ROADMAP"},
-{type:"insight",title:"VALUE CHAIN THINKING",sub:"Customer value first",items:["Connect","Optimize","Improve"],quote:"Kaizen mindset.",visual:"VALUE"},
-{type:"framework-raci"},
-{type:"framework-data",title:"DATA DRIVEN MANAGEMENT",sub:"KPI • OKR • CRM • ERP • BI"},
-
-{type:"section",part:"PART 04",title:"PEOPLE & GOVERNANCE",sub:"Quản trị nội bộ và con người"},
-
-{type:"insight",title:"TRANSPARENT COMMUNICATION",sub:"Transparency creates alignment",items:["Trust","Clarity","Delegation"],quote:"Communication is the bloodstream.",visual:"TRUST"},
-{type:"insight",title:"KNOWLEDGE ASSET",sub:"Wiki • Drive • Knowledge Base",items:["Capture","Share","Scale"],quote:"Knowledge compounds.",visual:"KNOWLEDGE"},
-{type:"insight",title:"CULTURE IN ACTION",sub:"Culture is behavior",items:["Habits","Process","Consistency"],quote:"Culture scales decisions.",visual:"CULTURE"},
-{type:"framework-triangle"},
-{type:"closing"}
-];
-
+const deck = [{"part": "PHẦN 1 · TƯ DUY TỔ CHỨC CHO NHÀ SÁNG LẬP", "no": "01", "type": "insight", "tag": "Organization First", "title": "ORGANIZATION FIRST", "sub": "Tổ chức là nền móng của tăng trưởng", "items": ["Startup không chỉ là sản phẩm và doanh số", "Cấu trúc và văn hóa cần được thiết kế từ sớm", "Nền móng vững giúp doanh nghiệp vượt qua biến động"], "label": "Key Message", "quote": "Growth starts with structure.", "visual": "GROWTH", "accent": "Structure"}, {"part": "PHẦN 1 · TƯ DUY TỔ CHỨC CHO NHÀ SÁNG LẬP", "no": "02", "type": "insight", "tag": "Cost of Chaos", "title": "THE COST OF CHAOS", "sub": "Tăng trưởng nhanh không thể thay thế quản trị", "items": ["Vai trò mập mờ tạo ra xung đột", "Quyết định chậm dần khi quy mô mở rộng", "Thiếu cấu trúc dẫn tới khủng hoảng tổ chức"], "label": "Case Insight", "quote": "Scale without governance creates risk.", "visual": "RISK", "accent": "Governance"}, {"part": "PHẦN 1 · TƯ DUY TỔ CHỨC CHO NHÀ SÁNG LẬP", "no": "03", "type": "flow", "tag": "Strategy Needs Structure", "title": "STRATEGY NEEDS STRUCTURE", "sub": "Tổ chức là bộ xương sống của chiến lược", "items": ["Chiến lược chỉ thành công khi được thực thi", "Cơ cấu tổ chức quyết định tốc độ triển khai", "Tư duy hệ thống là năng lực cốt lõi của nhà sáng lập"], "label": "Formula", "quote": "Strategy → Structure → Execution", "flow": ["Strategy", "Structure", "Execution"], "visual": "SYSTEM"}, {"part": "PHẦN 1 · TƯ DUY TỔ CHỨC CHO NHÀ SÁNG LẬP", "no": "04", "type": "flow", "tag": "Founder Evolution", "title": "FROM DOER TO LEADER", "sub": "Chuyển đổi từ “Tự làm” sang “Tổ chức làm”", "items": ["Giai đoạn đầu: Founder làm mọi việc", "Giai đoạn tăng trưởng: Bắt đầu ủy quyền", "Vai trò mới: Huấn luyện và dẫn dắt đội ngũ"], "label": "Founder Evolution", "quote": "Doer → Manager → Leader", "flow": ["Doer", "Manager", "Leader"], "visual": "LEADER"}, {"part": "PHẦN 1 · TƯ DUY TỔ CHỨC CHO NHÀ SÁNG LẬP", "no": "05", "type": "insight", "tag": "Systems Scale", "title": "SYSTEMS SCALE", "sub": "Đỉnh cao của quản trị là hệ thống vận hành", "items": ["Quy trình thay thế sự phụ thuộc cá nhân", "Tự động hóa tăng hiệu suất", "Văn hóa giúp duy trì tính nhất quán"], "label": "Vision", "quote": "Hệ thống làm việc thay cho nhà sáng lập.", "visual": "OPS", "accent": "Operating System"}, {"part": "PHẦN 1 · TƯ DUY TỔ CHỨC CHO NHÀ SÁNG LẬP", "no": "06", "type": "flow", "tag": "Build Early", "title": "BUILD EARLY", "sub": "Thiết kế tổ chức trước khi quá muộn", "items": ["Bắt đầu ngay từ nhóm nòng cốt", "Chuẩn bị cho tín hiệu tăng trưởng", "Tạo đòn bẩy cho mở rộng quy mô"], "label": "Growth Loop", "quote": "Culture → Performance → Growth", "flow": ["Culture", "Performance", "Growth"], "visual": "LOOP"}, {"part": "PHẦN 2 · CÁC MÔ HÌNH CẤU TRÚC HIỆN ĐẠI", "no": "07", "type": "model", "tag": "Functional Structure", "title": "FUNCTIONAL STRUCTURE", "sub": "Mô hình phân cấp truyền thống", "items": ["Chuyên môn hóa theo phòng ban", "Kiểm soát và vận hành ổn định", "Hạn chế tính linh hoạt"], "label": "Best For", "quote": "Doanh nghiệp ưu tiên kiểm soát.", "cards": [["Strength", "Ổn định và rõ tuyến báo cáo"], ["Risk", "Chậm khi cần đổi mới nhanh"], ["Best For", "Vận hành cần kiểm soát cao"]], "visual": "FUNCTION"}, {"part": "PHẦN 2 · CÁC MÔ HÌNH CẤU TRÚC HIỆN ĐẠI", "no": "08", "type": "model", "tag": "Flat Organization", "title": "FLAT ORGANIZATION", "sub": "Tăng tốc thông qua trao quyền", "items": ["Giảm tầng quản lý trung gian", "Ra quyết định nhanh hơn", "Thúc đẩy tinh thần tự chủ"], "label": "Trade-off", "quote": "Nhanh hơn nhưng cần kỷ luật cao hơn.", "cards": [["Strength", "Trao quyền và phản ứng nhanh"], ["Risk", "Dễ mơ hồ nếu thiếu kỷ luật"], ["Need", "Ownership và nguyên tắc rõ ràng"]], "visual": "FLAT"}, {"part": "PHẦN 2 · CÁC MÔ HÌNH CẤU TRÚC HIỆN ĐẠI", "no": "09", "type": "model", "tag": "Matrix Model", "title": "MATRIX MODEL", "sub": "Cân bằng giữa chuyên môn và dự án", "items": ["Hai tuyến quản lý song song", "Kết nối liên phòng ban", "Tăng khả năng thích ứng"], "label": "Strength", "quote": "Chuyên môn sâu + Linh hoạt cao.", "cards": [["Strength", "Kết hợp chuyên môn và dự án"], ["Risk", "Dễ xung đột ưu tiên"], ["Best For", "Tổ chức có nhiều dự án song song"]], "visual": "MATRIX"}, {"part": "PHẦN 2 · CÁC MÔ HÌNH CẤU TRÚC HIỆN ĐẠI", "no": "10", "type": "spotify", "tag": "Agile Organization", "title": "AGILE ORGANIZATION", "sub": "Mô hình Spotify", "items": ["Squad", "Tribe", "Chapter", "Guild"], "label": "Core Idea", "quote": "Đội ngũ tự chủ thúc đẩy đổi mới liên tục.", "visual": "AGILE"}, {"part": "PHẦN 2 · CÁC MÔ HÌNH CẤU TRÚC HIỆN ĐẠI", "no": "11", "type": "model", "tag": "Network Organization", "title": "NETWORK ORGANIZATION", "sub": "Tổ chức không biên giới", "items": ["Xóa bỏ rào cản chức năng", "Kết nối nội bộ và đối tác", "Tối ưu trí tuệ tập thể"], "label": "Advantage", "quote": "Collaboration at scale.", "cards": [["Strength", "Mở rộng qua kết nối"], ["Risk", "Khó kiểm soát chất lượng"], ["Best For", "Hệ sinh thái nhiều đối tác"]], "visual": "NETWORK"}, {"part": "PHẦN 2 · CÁC MÔ HÌNH CẤU TRÚC HIỆN ĐẠI", "no": "12", "type": "insight", "tag": "Fit The Strategy", "title": "FIT THE STRATEGY", "sub": "Không có mô hình hoàn hảo", "items": ["Cấu trúc phải phục vụ chiến lược", "Đổi mới cần linh hoạt", "Mở rộng cần chuẩn hóa"], "label": "Principle", "quote": "Structure follows strategy.", "visual": "FIT", "accent": "Adaptive Design"}, {"part": "PHẦN 3 · KIẾN TẠO BỘ MÁY VẬN HÀNH", "no": "13", "type": "insight", "tag": "Chief Architect", "title": "CHIEF ARCHITECT", "sub": "Founder phải làm việc trên doanh nghiệp", "items": ["Thiết kế hệ thống", "Xây dựng quy trình", "Giảm phụ thuộc vào cá nhân"], "label": "Mindset Shift", "quote": "Work on the business, not in the business.", "visual": "ARCHITECT", "accent": "Design the Company"}, {"part": "PHẦN 3 · KIẾN TẠO BỘ MÁY VẬN HÀNH", "no": "14", "type": "roles", "tag": "Build The Core Team", "title": "BUILD THE CORE TEAM", "sub": "Xác lập các vai trò chiến lược", "items": ["CEO", "COO", "Product Lead", "Marketing Lead", "CFO"], "label": "Principle", "quote": "Tuyển đúng vai trước khi tuyển đúng người.", "visual": "TEAM"}, {"part": "PHẦN 3 · KIẾN TẠO BỘ MÁY VẬN HÀNH", "no": "15", "type": "insight", "tag": "Organization Roadmap", "title": "ORGANIZATION ROADMAP", "sub": "Tổ chức cần được thiết kế cho tương lai", "items": ["Phân quyền rõ ràng", "Tránh chồng chéo trách nhiệm", "Đồng bộ với kế hoạch mở rộng"], "label": "Outcome", "quote": "Clarity drives execution.", "visual": "ROADMAP", "accent": "Future Ready"}, {"part": "PHẦN 3 · KIẾN TẠO BỘ MÁY VẬN HÀNH", "no": "16", "type": "insight", "tag": "Value Chain Thinking", "title": "VALUE CHAIN THINKING", "sub": "Tối ưu toàn bộ dòng chảy giá trị", "items": ["Kết nối các bộ phận", "Loại bỏ điểm nghẽn", "Cải tiến liên tục bằng Kaizen"], "label": "Focus", "quote": "Customer value first.", "visual": "VALUE", "accent": "End-to-End Flow"}, {"part": "PHẦN 3 · KIẾN TẠO BỘ MÁY VẬN HÀNH", "no": "17", "type": "raci", "tag": "RACI Framework", "title": "RACI FRAMEWORK", "sub": "Phân định trách nhiệm rõ ràng", "items": ["R — Responsible", "A — Accountable", "C — Consulted", "I — Informed"], "label": "Golden Rule", "quote": "Mỗi nhiệm vụ chỉ có một người chịu trách nhiệm cuối cùng.", "visual": "RACI"}, {"part": "PHẦN 3 · KIẾN TẠO BỘ MÁY VẬN HÀNH", "no": "18", "type": "stack", "tag": "Data-Driven Management", "title": "DATA-DRIVEN MANAGEMENT", "sub": "Quản trị bằng dữ liệu", "items": ["KPI đo hiệu suất hiện tại", "OKR tạo động lực tăng trưởng", "Dashboard giúp ra quyết định nhanh"], "label": "Technology Stack", "quote": "CRM • ERP • BI", "stack": ["CRM", "ERP", "BI"], "visual": "DATA"}, {"part": "PHẦN 4 · QUẢN TRỊ NỘI BỘ VÀ CON NGƯỜI", "no": "19", "type": "insight", "tag": "Transparent Communication", "title": "TRANSPARENT COMMUNICATION", "sub": "Giao tiếp là huyết mạch tổ chức", "items": ["Thông tin hai chiều", "Gia tăng niềm tin", "Hỗ trợ phân quyền hiệu quả"], "label": "Insight", "quote": "Transparency creates alignment.", "visual": "ALIGN", "accent": "Trust & Clarity"}, {"part": "PHẦN 4 · QUẢN TRỊ NỘI BỘ VÀ CON NGƯỜI", "no": "20", "type": "stack", "tag": "Knowledge Asset", "title": "KNOWLEDGE ASSET", "sub": "Kho tri thức là tài sản chiến lược", "items": ["Lưu trữ kiến thức tập trung", "Giảm phụ thuộc cá nhân", "Tăng tốc đào tạo nhân sự mới"], "label": "Platforms", "quote": "Wiki • Drive • Knowledge Base", "stack": ["Wiki", "Drive", "Knowledge Base"], "visual": "KNOWLEDGE"}, {"part": "PHẦN 4 · QUẢN TRỊ NỘI BỘ VÀ CON NGƯỜI", "no": "21", "type": "insight", "tag": "Culture In Action", "title": "CULTURE IN ACTION", "sub": "Văn hóa được thể hiện qua hành vi hằng ngày", "items": ["Không chỉ là khẩu hiệu", "Quy trình hỗ trợ sự tự chủ", "Chính sách tạo tính nhất quán"], "label": "Reality Check", "quote": "Culture is what people do when nobody watches.", "visual": "CULTURE", "accent": "Behavior System"}, {"part": "PHẦN 4 · QUẢN TRỊ NỘI BỘ VÀ CON NGƯỜI", "no": "22", "type": "triangle", "tag": "The Golden Triangle", "title": "THE GOLDEN TRIANGLE", "sub": "Tam giác vàng quản trị", "items": ["Empowerment", "Control", "Transparency"], "label": "Balance Creates Scale", "quote": "Phân quyền × Kiểm soát × Minh bạch", "visual": "BALANCE"}, {"part": "PHẦN 4 · QUẢN TRỊ NỘI BỘ VÀ CON NGƯỜI", "no": "23", "type": "insight", "tag": "Build The Next Leaders", "title": "BUILD THE NEXT LEADERS", "sub": "Phát triển đội ngũ kế cận", "items": ["Tầng lớp quản lý cấp trung", "Kết nối chiến lược và thực thi", "Kết hợp nội lực và chuyên gia bên ngoài"], "label": "Goal", "quote": "Sustainable leadership pipeline.", "visual": "PIPELINE", "accent": "Leadership Layer"}, {"part": "PHẦN 4 · QUẢN TRỊ NỘI BỘ VÀ CON NGƯỜI", "no": "24", "type": "closing", "tag": "Scale Without Chaos", "title": "SCALE WITHOUT CHAOS", "sub": "Tăng trưởng bền vững bắt đầu từ con người", "items": ["Duy trì an toàn tâm lý", "Loại bỏ các điểm nghẽn vận hành", "Mở rộng mà không mất kiểm soát"], "label": "Final Message", "quote": "Great companies scale through systems, culture and people.", "visual": "SCALE"}];
 const holder=document.getElementById('slides');
-
-deck.forEach((s,i)=>{
-let html='';
-
-if(s.type==='section'){
-html=`<section class="section-slide ${i===0?'active':''}"><div class="part">${s.part}</div><h1>${s.title}</h1><p>${s.sub}</p></section>`;
+const esc=s=>String(s??'').replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]));
+function bullets(items){return `<ul class="bullet-list">${(items||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`}
+function quoteBlock(s){return `<div class="quote"><div class="label">${esc(s.label||'Insight')}</div><div class="text">${esc(s.quote||'')}</div></div>`}
+function bg(){return `<div class="bg-grid"></div><div class="bg-shape one"></div><div class="bg-shape two"></div>`}
+function header(s){return `<div class="part-tag"><span>${esc(s.no)}</span><span>${esc(s.part)}</span></div><div class="tag">${esc(s.tag||'Founder Organization Playbook')}</div><h1>${esc(s.title)}</h1><h2>${esc(s.sub)}</h2>`}
+function visualCircle(s){return `<div class="visual"><div class="orbit"></div><div class="circle">${esc(s.visual||s.title)}</div></div>`}
+function cardList(s){return `<div class="card-grid">${(s.items||[]).map((x,idx)=>`<div class="card"><h3>${idx+1<10?'0':''}${idx+1}</h3><p>${esc(x)}</p></div>`).join('')}</div>`}
+function comparisonCards(s){return `<div class="comparison-grid">${(s.cards||[]).map(c=>`<div class="comp-card"><h3>${esc(c[0])}</h3><p>${esc(c[1])}</p></div>`).join('')}</div>`}
+function slideInsight(s,i){return `<section class="slide ${i===0?'active':''}">${bg()}<div class="wrap"><div class="content">${header(s)}${bullets(s.items)}${quoteBlock(s)}</div>${visualCircle(s)}</div><div class="num">${esc(s.no)} / 24</div></section>`}
+function slideModel(s,i){return `<section class="slide model-layout ${i===0?'active':''}">${bg()}<div class="wrap"><div class="content">${header(s)}${bullets(s.items)}${quoteBlock(s)}</div><div class="visual">${comparisonCards(s)}</div></div><div class="num">${esc(s.no)} / 24</div></section>`}
+function slideFlow(s,i){return `<section class="slide ${i===0?'active':''}">${bg()}<div class="wrap"><div class="content">${header(s)}${bullets(s.items)}${quoteBlock(s)}</div><div class="visual"><div><div class="flow-row">${(s.flow||[]).map((x,idx)=>`<div class="flow-box">${esc(x)}</div>${idx<(s.flow||[]).length-1?'<div class="arrow">→</div>':''}`).join('')}</div></div></div></div><div class="num">${esc(s.no)} / 24</div></section>`}
+function slideSpotify(s,i){const defs={Squad:'Đội nhỏ tự chủ theo sản phẩm hoặc mục tiêu',Tribe:'Nhóm nhiều squad cùng một lĩnh vực',Chapter:'Cộng đồng chuyên môn cùng năng lực',Guild:'Mạng lưới chia sẻ tri thức tự nguyện'};return `<section class="slide ${i===0?'active':''}">${bg()}<div class="wrap"><div class="content">${header(s)}${quoteBlock(s)}</div><div class="visual"><div class="spotify-grid">${(s.items||[]).map(x=>`<div class="card spotify-card"><strong>${esc(x)}</strong><span>${esc(defs[x]||'Agile unit')}</span></div>`).join('')}</div></div></div><div class="num">${esc(s.no)} / 24</div></section>`}
+function slideRoles(s,i){return `<section class="slide ${i===0?'active':''}">${bg()}<div class="wrap"><div class="content">${header(s)}${quoteBlock(s)}</div><div class="visual"><div class="roles-grid">${(s.items||[]).map(x=>`<div class="role-card"><h3>Core Role</h3><p>${esc(x)}</p></div>`).join('')}</div></div></div><div class="num">${esc(s.no)} / 24</div></section>`}
+function slideRaci(s,i){const map={'R':'Responsible','A':'Accountable','C':'Consulted','I':'Informed'};return `<section class="slide ${i===0?'active':''}">${bg()}<div class="wrap"><div class="content">${header(s)}${quoteBlock(s)}</div><div class="visual"><div class="raci-grid">${Object.entries(map).map(([k,v])=>`<div class="raci-item"><div class="raci-letter">${k}</div><div><b>${v}</b><p>${k==='R'?'Người trực tiếp thực hiện':k==='A'?'Người chịu trách nhiệm cuối cùng':k==='C'?'Người cần được tham vấn':'Người cần được cập nhật'}</p></div></div>`).join('')}</div></div></div><div class="num">${esc(s.no)} / 24</div></section>`}
+function slideStack(s,i){return `<section class="slide ${i===0?'active':''}">${bg()}<div class="wrap"><div class="content">${header(s)}${bullets(s.items)}${quoteBlock(s)}</div><div class="visual"><div class="stack-row">${(s.stack||[]).map(x=>`<div class="stack-pill">${esc(x)}</div>`).join('')}</div></div></div><div class="num">${esc(s.no)} / 24</div></section>`}
+function slideTriangle(s,i){return `<section class="slide ${i===0?'active':''}">${bg()}<div class="wrap"><div class="content">${header(s)}${quoteBlock(s)}</div><div class="visual"><div class="triangle"><div class="triangle-line"></div><div class="tri-node top">Transparency</div><div class="tri-node left">Control</div><div class="tri-node right">Empowerment</div></div></div></div><div class="num">${esc(s.no)} / 24</div></section>`}
+function slideClosing(s,i){return `<section class="slide ${i===0?'active':''}">${bg()}<div class="closing"><div class="content">${header(s)}${bullets(s.items)}${quoteBlock(s)}</div><div class="final"><h1>${esc(s.title)}</h1><p>${esc(s.quote)}</p></div></div><div class="num">${esc(s.no)} / 24</div></section>`}
+function render(s,i){
+ if(s.type==='model') return slideModel(s,i);
+ if(s.type==='flow') return slideFlow(s,i);
+ if(s.type==='spotify') return slideSpotify(s,i);
+ if(s.type==='roles') return slideRoles(s,i);
+ if(s.type==='raci') return slideRaci(s,i);
+ if(s.type==='stack') return slideStack(s,i);
+ if(s.type==='triangle') return slideTriangle(s,i);
+ if(s.type==='closing') return slideClosing(s,i);
+ return slideInsight(s,i);
 }
-else if(s.type==='comparison'){
-html=`<section class="slide ${i===0?'active':''}"><div style="width:100%"><div class="tag">Comparison Model</div><h1>${s.title}</h1><div class="comparison-grid"><div class="comp-card"><h3>Strength</h3><p>Core Advantage</p></div><div class="comp-card"><h3>Weakness</h3><p>Main Limitation</p></div><div class="comp-card"><h3>Best Use</h3><p>Ideal Context</p></div><div class="comp-card"><h3>Risk</h3><p>Execution Risk</p></div></div></div></section>`;
-}
-else if(s.type==='framework'){
-html=`<section class="slide"><div class="wrap"><div><h1>${s.title}</h1><h2>${s.sub}</h2></div><div class="framework"><div class="box">Strategy</div><div>→</div><div class="box">Structure</div><div>→</div><div class="box">Execution</div></div></div></section>`;
-}
-else if(s.type==='framework-raci'){
-html=`<section class="slide"><div class="wrap"><div><h1>RACI FRAMEWORK</h1><h2>One owner for every decision</h2></div><div class="raci"><div><b>R</b> Responsible</div><div><b>A</b> Accountable</div><div><b>C</b> Consulted</div><div><b>I</b> Informed</div></div></div></section>`;
-}
-else if(s.type==='framework-triangle'){
-html=`<section class="slide"><div class="wrap"><div><h1>THE GOLDEN TRIANGLE</h1><h2>Empowerment × Control × Transparency</h2></div><div class="triangle"><div class="top">Transparency</div><div class="left">Control</div><div class="right">Empowerment</div></div></div></section>`;
-}
-else if(s.type==='closing'){
-html=`<section class="slide"><div class="closing"><h1>SCALE WITHOUT CHAOS</h1><p>Great companies scale through Systems, Culture and People.</p></div></section>`;
-}
-else{
-html=`<section class="slide ${i===0?'active':''}"><div class="wrap"><div><div class="tag">Founder Organization Playbook</div><h1>${s.title}</h1><h2>${s.sub}</h2><ul>${(s.items||[]).map(x=>`<li>${x}</li>`).join('')}</ul><div class="quote">${s.quote||''}</div></div><div class="visual"><div class="circle">${s.visual||''}</div></div></div></section>`;
-}
-
-holder.innerHTML+=html;
-});
-
+holder.innerHTML=deck.map(render).join('');
 let current=0;
-const slides=document.querySelectorAll('.slide,.section-slide');
-
-function update(){
-slides.forEach(x=>x.classList.remove('active'));
-slides[current].classList.add('active');
-document.getElementById('bar').style.width=((current+1)/slides.length*100)+'%';
-}
-
+const slides=document.querySelectorAll('.slide');
+function update(){slides.forEach(x=>x.classList.remove('active'));slides[current].classList.add('active');document.getElementById('bar').style.width=((current+1)/slides.length*100)+'%';}
 function nextSlide(){if(current<slides.length-1){current++;update();}}
 function prevSlide(){if(current>0){current--;update();}}
-
-document.addEventListener('keydown',e=>{
-if(e.key==="ArrowRight")nextSlide();
-if(e.key==="ArrowLeft")prevSlide();
-});
-
-let sx=0;
-document.addEventListener('touchstart',e=>sx=e.changedTouches[0].screenX);
-document.addEventListener('touchend',e=>{
-let ex=e.changedTouches[0].screenX;
-if(sx-ex>50)nextSlide();
-if(ex-sx>50)prevSlide();
-});
-
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDown')nextSlide();if(e.key==='ArrowLeft'||e.key==='PageUp')prevSlide();if(e.key==='Home'){current=0;update();}if(e.key==='End'){current=slides.length-1;update();}});
+let sx=0;document.addEventListener('touchstart',e=>sx=e.changedTouches[0].screenX);document.addEventListener('touchend',e=>{let ex=e.changedTouches[0].screenX;if(sx-ex>50)nextSlide();if(ex-sx>50)prevSlide();});
 update();
 </script>
 </body>
